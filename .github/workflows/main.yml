@@ -1,0 +1,23 @@
+name: Create Text File on Server
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  create-file-on-server:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Create text file on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+
+          script: |
+             touch /home/ubuntu/aws.txt

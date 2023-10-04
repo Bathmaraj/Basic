@@ -1,0 +1,91 @@
+The error message "Failed to restart ssh.service: Unit not found" suggests that the SSH service unit file is not found on your system. This typically means that the SSH server is not installed or is not using the default name "ssh.service" on your Linux distribution.
+
+Here are some steps to resolve this issue:
+
+    Check SSH Server Installation:
+
+    Ensure that the SSH server is installed on your system. The package name for the SSH server can vary depending on your Linux distribution. Common package names include openssh-server (for Debian/Ubuntu) and sshd (for CentOS/RHEL).
+
+    You can use the package manager for your distribution to install the SSH server if it's not already installed. For example:
+
+        On Debian/Ubuntu:
+
+        bash
+
+sudo apt-get install openssh-server
+
+On CentOS/RHEL:
+
+bash
+
+    sudo yum install openssh-server
+
+Check SSH Service Name:
+
+The name of the SSH service unit file may differ depending on your Linux distribution. After installing the SSH server, you may need to use the correct service name to manage it. For example:
+
+    On many distributions, you can use sshd as the service name:
+
+    bash
+
+sudo systemctl restart sshd
+
+On Debian-based distributions (e.g., Debian, Ubuntu), the service name is ssh:
+
+bash
+
+    sudo systemctl restart ssh
+
+Make sure you are using the appropriate service name for your distribution.
+
+Verify SSH Service Status:
+
+You can check the status of the SSH service to confirm whether it's installed and running. Use the appropriate service name for your distribution:
+
+    On CentOS/RHEL:
+
+    bash
+
+sudo systemctl status sshd
+
+On Debian/Ubuntu:
+
+bash
+
+    sudo systemctl status ssh
+
+This command will show you the status of the SSH service and whether it's active and running.
+
+Start the SSH Service:
+
+If the SSH service is not running, you can start it using the appropriate command:
+
+    On CentOS/RHEL:
+
+    bash
+
+sudo systemctl start sshd
+
+On Debian/Ubuntu:
+
+bash
+
+    sudo systemctl start ssh
+
+Enable SSH Service at Boot (Optional):
+
+To ensure that the SSH service starts automatically when your system boots, you can enable it using the enable command:
+
+    On CentOS/RHEL:
+
+    bash
+
+sudo systemctl enable sshd
+
+On Debian/Ubuntu:
+
+bash
+
+        sudo systemctl enable ssh
+
+After completing these steps, you should be able to manage the SSH service using the correct service name for your Linux distribution, and you should no longer encounter the "Unit not found" error.
